@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Room</title>
+    <link href="../css/core.css" type="text/css" rel="stylesheet">
+    <link href="../css/room.css" type="text/css" rel="stylesheet">
+    <script type="text/javascript" src="../js/search.js"></script>
+    <script type="text/javascript" src="../js/room.js"></script>
+</head>
+
+<body onload="loadname()">
+    <header>
+        <img src="../img/ferryman.jpg" alt="logo" id="banner_img" class="logo">
+        <a id="banner_link" href="search.html">Ferryman Trip</a>
+        <div id="header_link">
+            <a href="search.html" class="header_link">Search</a>
+            <a href="hotel.html" class="header_link">Hotel</a>
+            <a href="room.html" class="header_link">Room</a>
+            <a href="confirm.html" class="header_link">Confirm</a>
+        </div>
+    </header>
+    <div class="main">
+        <h1 id="NAME">InterContinental_Hong_Kong</h1>
+        <div id="pictures">
+            <img src="../img/hk1.jpg" id="changeable" class="top" alt="largerpic">
+            <div id="bottom">
+                <img src="../img/hk1.jpg" id="pc1" class="bottom" alt="small1">
+                <img src="../img/bk1.jpg" id="pc2" class="bottom" alt="small2">
+                <img src="../img/sgp1.jpg" id="pc3" class="bottom" alt="small3">
+            </div>
+        </div>
+        <div class="moreOptions">
+            <fieldset id="options">
+                <legend>More Options</legend>
+                <form method="get" action="#">
+                    <p>
+                        <label>Room Type:</label>
+                        <input type="radio" id="single" name="roomType" value="single" />
+                        <label for="single">Single</label>
+                        <input type="radio" id="twin" name="roomType" value="twin" />
+                        <label for="twin">Twin</label>
+                        <input type="radio" id="double" name="roomType" value="double" />
+                        <label for="double">Double</label>
+                        <input type="radio" id="king" name="roomType" value="king" />
+                        <label for="king">King</label>
+                    </p>
+                    <p>
+                        <label>Other Requirments:</label>
+                        <input type="checkbox" id="nonsmoking" name="nonsmoking" />
+                        <label for="nonsmoking">Non-smoking</label>
+                        <br>
+                    </p>
+                    <p>
+                        Meals Provided:
+                        <input type="checkbox" id="breakfast" name="breakfast" value="breakfast" />
+                        <label for="breakfast">Breakfast</label>
+                        <input type="checkbox" id="lunch" name="lunch" value="lunch" />
+                        <label for="lunch">Lunch</label>
+                        <input type="checkbox" id="dinner" name="dinner" value="dinner" />
+                        <label for="dinner">Dinner</label>
+                    </p>
+                    <p>
+                        View:
+                        <input type="radio" id="mountain" name="view" value="mountain" />
+                        <label for="mountain">Mountain view</label>
+                        <input type="radio" id="sea" name="view" value="sea" />
+                        <label for="sea">Sea view</label>
+                    </p>
+                    <input type="submit" value="Search">
+                </form>
+            </fieldset>
+        </div>
+        <hr>
+        <h3>Rooms available</h3>
+        <fieldset id="rmsavl">
+            <fieldset class="rm">
+                <legend>Room 1</legend>
+                Type: deluxe single
+                <br> Size: 25sq.ft.
+                <br> Meal: breakfast
+                <br> Price:500
+                <br>
+                <form method="get" action="confirm.html">
+                    <input type="button" value="Book" onclick="book(500);location.href='confirm.html'">
+                </form>
+                
+            </fieldset>
+            <fieldset class="rm">
+                <legend>Room 2</legend>
+                Type: standard twin
+                <br> Size: 30sq.ft.
+                <br> Meal: breakfast
+                <br> Price:700
+                <br>
+                <form method="get" action="confirm.html">
+                    <input type="button" value="Book" onclick="book(700);location.href='confirm.html'">
+                </form>
+            </fieldset>
+            <fieldset class="rm">
+                <legend>Room 3</legend>
+                Type: deluxe single
+                <br> Size: 45sq.ft.
+                <br> Meal: breakfast
+                <br> Price:1200
+                <br>
+                <form method="get" action="confirm.html">
+                    <input type="button" value="Book" onclick="book(1200);location.href='confirm.html'">
+                </form>
+            </fieldset>
+            <fieldset class="common">
+                <ul>
+                    <li>Laundries provided</li>
+                    <li>Language support: English, Spanish, French etc.</li>
+                </ul>
+            </fieldset>
+        </fieldset>
+    </div>
+    <script>adjustpic()</script>
+    <footer>
+        <img src="../img/ferryman.jpg" class="logo" alt="logo">
+        <p>Copyright © LIU Pengze</p>
+        <p>CityU SID: 54381922</p>
+        <p>
+            Click
+            <a href="design.html">here</a> to view design
+        </p>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Design</title>
+    <link href="../css/design.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+    <h1>Course Work 2</h1>
+    <p>Two different methods of setting up event handler:</p>
+    <ol>
+        <li>obtrusive example: room.html onload in the body tag</li>
+        <li>unobtrusive example: room.html small pictures' onmouseover by function adjustpic()</li>
+    </ol>
+    <hr>
+    <h1>Course Work 1</h1>
+    <fieldset>
+        <p>Back:<br>
+            <a href="search.html">1.search</a><br>
+            <a href="hotel.html">2.hotel</a><br>
+            <a href="room.html">3.room</a><br>
+            <a href="confirm.html">4.confirm</a><br>
+        </p>
+        <p>Inner Link:<br>
+        <a href="#author">Author</a><br>
+        <a href="#theme">Theme</a><br>
+        <a href="#banner">Banner</a><br>
+        <a href="#p1">The first paragraph</a><br>
+        <a href="#p2">The second paragraph</a><br>
+        <a href="#p3">The third paragraph</a><br>
+        <a href="#p4">The fourth paragraph</a><br>
+        <a href="#footer">Footer</a>
+        </p>
+    </fieldset>
+    <p id="author">SID:54381922 Author: LIU Pengze</p>
+    <fieldset id="theme">
+        <legend>Theme:</legend>
+        Mainly use cold tonal colors. The background is a view of the sea,
+        which correspond to the users' feeling of relax on their vacation.
+        <br>
+        The font type is also informal (cursive) to relax users.
+        <br>
+        The layout of the webpage is mainly developed by frameset tags.
+        The values are set in a relative way (use percentage).
+    </fieldset>
+    <fieldset id="banner">
+        <legend>Banner:</legend>
+        Use the modular style. The components of the banners are buttons
+        that link to these several pages.<br>
+        Using the hover design to make some change on these buttons "on_mouse_over" and "gradient"
+    </fieldset>
+    <fieldset id="p1">
+        <legend>Page 1 (search.html):</legend>
+        The video will play automatically.
+        "Find a hotel", "Things to do" are two large blocks, in which
+        smaller blocks are used ("Skiing","Diving")
+        The calendar is developed by table.
+        The information input is within the frame
+    </fieldset>
+    <fieldset id="p2">
+        <legend>Page 2 (hotel.html):</legend>
+        The "Search" part is roughly the same as it is in the first page, except that
+        it is used more like a navigation.<br>
+        The right hind side is 3 independent blocks about 3 hotels.
+        Source of the pictures are <a href="../img/img_source.txt">here</a>
+    </fieldset>
+    <fieldset id="p3">
+        <legend>Page 3 (room.html):</legend>
+        <b>Here we automatically assume that the first (Recommended) hotel is selected.</b><br>
+        Those input columns are in the same "form" tag.<br>
+        A horizontal line "hr" is used to devided the page into two parts.<br>
+        The lower part is also made up with 4 blocks.<br>
+        <b>The "Book" button are in the forms. Type: submit</b>
+    </fieldset>
+    <fieldset id="p4">
+        <legend>Page 4 (confirm.html):</legend>
+        As the booking information cannot be handled without the use of Java Script, I randomly writhe some information there.<br>
+        The confirm button is also in a form, action="search.html"(default page)<br>
+        Below which a link "here" is pointed back to the room page for making new changes.
+    </fieldset>
+    <fieldset id="footer">
+        <legend>Footer:</legend>
+        A logo is also used.<br>
+        the "here" link also contains the hover attribute.
+    </fieldset>
+    <p>
+        <a href="../reference_list.txt">Reference List</a>
+    </p>
+</body>
+
+</html>

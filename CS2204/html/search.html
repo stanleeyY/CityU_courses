@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<meta charset="utf-8">
+    <title>Search</title>
+	<link href="../css/core.css" type="text/css" rel="stylesheet">
+	<link href="../css/search.css" type="text/css" rel="stylesheet">
+	<script type="text/javascript" src="../js/search.js"></script>
+</head>
+
+<body onload="initRegion();hideCal()">
+	<header>
+        <img src="../img/ferryman.jpg" alt="logo" id="banner_img" class="logo">
+		<a id="banner_link" href="search.html">Ferryman Trip</a>
+		<div id="header_link">
+			<a href="search.html" class="header_link">Search</a>
+			<a href="hotel.html" class="header_link">Hotel</a>
+			<a href="room.html" class="header_link">Room</a>
+			<a href="confirm.html" class="header_link">Confirm</a>
+		</div>
+	</header>
+	<div class="main">
+		<div class="video">
+			<video controls="controls">
+				<source src="http://courses.cs.cityu.edu.hk/cs2204/video-2.mp4" type="video/mp4" />
+				<source src="http://courses.cs.cityu.edu.hk/cs2204/video-2.ogg" type="video/ogg" />
+				<h2>Your browser does not support this video format</h2>
+			</video>
+		</div>
+		<fieldset id="searcharea">
+			<legend>Find a Hotel</legend>
+			<table class="calendar">
+				<tr>
+					<td class="direction">←</td>
+					<td colspan="5">May 2016</td>
+					<td class="direction">→</td>
+				</tr>
+				<tr>
+					<td class="Sunday" onmouseover="getDate(1)">1</td>
+					<td onmouseover="getDate(2)">2</td>
+					<td onmouseover="getDate(3)">3</td>
+					<td onmouseover="getDate(4)">4</td>
+					<td onmouseover="getDate(5)">5</td>
+					<td onmouseover="getDate(6)">6</td>
+                    <td onmouseover="getDate(7)">7</td>
+				</tr>
+				<tr>
+					<td class="Sunday" onmouseover="getDate(8)">8</td>
+					<td onmouseover="getDate(9)">9</td>
+					<td onmouseover="getDate(10)">10</td>
+					<td onmouseover="getDate(11)">11</td>
+					<td onmouseover="getDate(12)">12</td>
+					<td onmouseover="getDate(13)">13</td>
+                    <td onmouseover="getDate(14)">14</td>
+				</tr>
+				<tr>
+					<td class="Sunday" onmouseover="getDate(15)">15</td>
+					<td onmouseover="getDate(16)">16</td>
+					<td onmouseover="getDate(17)">17</td>
+					<td onmouseover="getDate(18)">18</td>
+					<td onmouseover="getDate(19)">19</td>
+					<td onmouseover="getDate(20)">20</td>
+                    <td onmouseover="getDate(21)">21</td>
+				</tr>
+				<tr>
+					<td class="Sunday" onmouseover="getDate(22)">22</td>
+					<td onmouseover="getDate(23)">23</td>
+					<td onmouseover="getDate(24)">24</td>
+					<td onmouseover="getDate(25)">25</td>
+					<td onmouseover="getDate(26)">26</td>
+					<td onmouseover="getDate(27)">27</td>
+                    <td onmouseover="getDate(28)">28</td>
+				</tr>
+				<tr>
+					<td class="Sunday" onmouseover="getDate(29)">29</td>
+					<td onmouseover="getDate(30)">30</td>
+					<td onmouseover="getDate(31)">31</td>
+					<td class="June">1</td>
+					<td class="June">2</td>
+					<td class="June">3</td>
+                    <td class="June">4</td>
+				</tr>
+			</table><script>initCal();</script>
+			<form class="search" method="get" action="hotel.html" onsubmit="return checkSubmit()">
+				<p>Region:
+					<select class="search" id="region" onchange="getCity()">
+						<option value="China" id="CHN">China</option>
+						<option value="Thailand" id="THA">Thailand</option>
+						<option value="Singapore" id="SGP">Singapore</option>
+					</select>
+				</p>
+				<p>Destination:
+					<select class="search" id="destination">
+						<option id="city1">Singapore</option>
+						<option id="city2">Sentosa</option>
+					</select>
+				</p>
+				<p>Check-in date:
+					<input type="text" class="search" id="checkin" onfocus="showCal();cincout=true;" onblur="hideCal()" value="yyyy/mm/dd">
+				</p>
+				<p>Check-out date:
+					<input type="text" class="search" id="checkout" onfocus="showCal();cincout=false;" onblur="hideCal()" value="yyyy/mm/dd">
+				</p>
+				<p>No. of room:
+					<input type="number" class="search" id="number_of_room">
+
+				</p>
+				<p>
+					<input type="submit" value="Search" onclick="getData()">
+					<input type="reset" value="Reset">
+				</p>
+			</form>
+		</fieldset>
+		<fieldset class="things_to_do">
+			<hr>
+			<h2 id="things-to-do">Things to do</h2>
+			<div class="todo1">
+				<p>Skiing</p>
+				<img src="../img/skiing.jpg" id="img_skiing" alt="skiing">
+				<p>
+					Skiing is a mode of transport, recreational activity and competitive winter sport in which the participant uses skis to glide on snow. Many types of competitive skiing events are recognized by the International Olympic Committee (IOC), and the International Ski Federation (FIS). (From Wikipedia)
+				</p>
+			</div>
+			<div class="todo2">
+				<p>Diving</p>
+				<img src="../img/diving.jpg" id="img_diving" alt="diving">
+				<p>
+					Underwater diving is the practice of going underwater, either with breathing apparatus(scuba diving and surface supplied diving) or by breath-holding (freediving). Atmospheric diving suits may be used to isolate the diver from the effects of high ambient pressure, or the saturation diving technique can be used to reduce the risk of decompression sickness after deep dives. (From Wikipedia)
+				</p>
+			</div>
+		</fieldset>
+	</div>
+	<footer>
+		<img src="../img/ferryman.jpg" alt="logo" class="logo">
+		<p>Copyright © LIU Pengze</p>
+		<p>CityU SID: 54381922</p>
+		<p>
+			Click
+			<a href="design.html">here</a> to view design
+		</p>
+	</footer>
+</body>
+
+</html>

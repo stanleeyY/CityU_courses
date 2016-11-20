@@ -1,0 +1,25 @@
+.header {
+    overflow: auto;
+}
+.searcharea {
+    width: 31%;
+    float: left;
+    overflow: auto;
+    z-index:-1;
+}
+.calendar {
+    border-width: 10px;
+    border-color: #DDFFEE;
+    width: 99%;
+    float: left;
+}
+.right{
+    float: right;
+    width:60%;
+}
+#hk1_img,#bk1_img,#sgp1_img{
+    width:40%;
+}
+.recommended{
+    color:red;
+}

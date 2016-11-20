@@ -1,0 +1,13 @@
+reuse html code: 
+http://gamebs.blog.163.com/blog/static/186018218201281215423565/
+tags reference:
+http://www.w3schools.com/
+http://www.w3school.com.cn/
+css text clear:
+http://www.cleancss.com/
+html validation:
+https://validator.w3.org/
+css validation:
+https://jigsaw.w3.org/css-validator/
+font style:
+http://csstypeset.com/

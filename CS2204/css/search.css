@@ -1,0 +1,49 @@
+.header {
+    overflow: auto;
+}
+#img_skiing,
+#img_diving {
+    width: 30%;
+}
+#searcharea {
+    width: 65%;
+    float: left;
+    overflow: auto;
+}
+video {
+    margin-top: 3%;
+    width: 30%;
+    float: right;
+}
+.things_to_do {
+    width: 96%;
+    overflow: auto;
+    border-width: 0px;
+}
+.calendar {
+    border-width: 10px;
+    border-color: #DDFFEE;
+    width: 40%;
+    float: right;
+}
+.todo1 {
+    float: left;
+    width: 49%;
+    overflow: auto;
+}
+.todo2 {
+    float: right;
+    width: 49%;
+    overflow: auto;
+}
+#img_skiing {
+    width: 100%;
+    height: 300px;
+}
+#img_diving {
+    width: 100%;
+    height: 300px;
+}
+#things-to-do {
+    color: red;
+}

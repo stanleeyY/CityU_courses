@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Confirm</title>
+    <link href="../css/core.css" type="text/css" rel="stylesheet">
+    <script type="text/javascript" src="../js/room.js"></script>
+</head>
+
+<body onload="getreferenceno()">
+    <header>
+        <img src="../img/ferryman.jpg" alt="logo" id="banner_img" class="logo">
+        <a id="banner_link" href="search.html">Ferryman Trip</a>
+        <div id="header_link">
+            <a href="search.html" class="header_link">Search</a>
+            <a href="hotel.html" class="header_link">Hotel</a>
+            <a href="room.html" class="header_link">Room</a>
+            <a href="confirm.html" class="header_link">Confirm</a>
+        </div>
+    </header>
+    <div class="main">
+        <p>Booking reference No. </p>
+        <p id="referenceno" class="final"></p>
+        <p>Client's name ：</p>
+        <p id="client" class="final"></p>
+        <p>Hotel: </p>
+        <p id="hotelname" class="final"></p>
+        <p>Room price: </p>
+        <p id="rmprice" class="final"></p>
+        <form method="get" action="search.html">
+            <input type="submit" value="Confirm" />
+        </form>
+        <p>
+            Not satisfied? Click
+            <a href="room.html">here</a> to check other rooms
+        </p>
+    </div>
+    <footer>
+        <img src="../img/ferryman.jpg" class="logo" alt="logo">
+        <p>Copyright © LIU Pengze</p>
+        <p>CityU SID: 54381922</p>
+        <p>
+            Click
+            <a href="design.html">here</a> to view design
+        </p>
+    </footer>
+</body>
+
+</html>
