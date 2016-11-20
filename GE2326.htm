@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<!-- saved from url=(0053)http://personal.cs.cityu.edu.hk/~pengzeliu2/2326.html -->
+<html class="gr__personal_cs_cityu_edu_hk"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <title>Mosaics Matrix</title>
+      
+      <style type="text/css" media="all">
+         p{
+            font-family: cursive;
+         }
+         body{
+            background-color:#EEFFFF;
+         }
+         div.black,div.white {
+            width:200px;
+            height:200px;
+            border:2px black solid;
+            float:left;
+         }
+         div.black:hover,div.white:hover {
+            width:210px;
+            height:210px;
+            border:1px black solid;
+         }
+         .black {
+            background-color:#000000;
+         }
+         .black:hover {
+            background-color:#111111;
+         }
+         .white {
+            background-color:#EEEEEE;
+         }
+         .white:hover {
+            background-color:#FFFFFF;
+         }
+         .row{
+            overflow:auto;
+         }
+         .x-axis{
+            float:left;
+            font-size:5em;
+         }
+         #y-axis{
+            font-size:5em;
+            overflow:auto;
+         }
+         td{
+            width:105px;
+         }
+         button{
+            width:200px;
+            height:45px;
+            font-size:2em;
+            font-family: fantasy;
+         }
+         button:hover{
+            font-weight: bold;
+            background-color: #666666;
+         }
+         s{
+            font-weight: bold;
+         }
+         img{
+            width:25%;
+         }
+         a:hover{
+            font-weight: bolder;
+         }
+      </style>
+      <script type="text/javascript" media="all">
+         var cnt=0;
+         var color=new Array(2);
+         color[0]=-1;
+         color[1]=-1;
+         var win=0;
+         var lose=0;
+         function roll(count) {
+             var str1="The coordinate you get is ( ";
+             var str2="The color is "
+             var n1=Math.floor(Math.random()*6+1);
+             var n2=Math.floor(Math.random()*6+1);
+             str1+=n1;
+             str1+=" , ";
+             str1+=n2;
+             str1+=" )";
+             n1=Math.ceil(n1/2);
+             n2=Math.ceil(n2/2);
+             if ((n1==1&&n2==2)||(n1==2&&n2==1)||(n1==2&&n2==3)||(n1==3&&n2==2)) {
+                 color[count]=1;
+             }
+             else{
+                 color[count]=0;
+             }
+             color[count]==0?str2+="BLACK":str2+="WHITE";
+             str1+=str2;
+             alert(str1);
+             if (color[0]!=-1&&color[1]!=-1) {
+                 if(color[0]!=color[1]){
+                     alert("RESULT: You Win! ^_^");
+                     win++;
+                 }
+                 else{
+                     alert("RESULT: You Lose! v_v");
+                     lose++;
+                 }
+                 cnt++;
+                 color[0]=-1;
+                 color[1]=-1;
+                 document.querySelector("#notrial").innerHTML="You have tried "+cnt+" times.";
+                 document.querySelector("#nowin").innerHTML="You have won "+win*150+" HKD.";
+                 document.querySelector("#nolose").innerHTML="You have lost "+lose*150+" HKD.";
+             }
+         }
+         function result() {
+             var trial=win+lose;
+             var delta=(win-lose)*150;
+             var percentage=(win-lose)/trial*100;
+             var s="<h2>The total amount of money you win is: ";
+             s+=win*150;
+             s+=" HKD</h2>"
+             document.write(s);
+             s="<h2>The total amount of money you lose is: ";
+             s+=lose*150;
+             s+=" HKD</h2>"
+             document.write(s);
+             s="<h2>The final change of your assets is ";
+             s+=delta;
+             s+=" HKD</h2>";
+             document.write(s);
+             s="<h2>Your earning ratio is "
+             s+=percentage;
+             s+="%</h2>"
+             document.write(s);
+             document.write("<br><a href='http://personal.cs.cityu.edu.hk/~pengzeliu2/'>Do you want to try again?</a>");
+         }
+      </script>
+   </head>
+   <body data-gr-c-s-loaded="true">
+      <p style="color:#777777">GE2326 Group 1 Project</p>
+      <h1 id="title">Mosaics Matrix Casino Game!</h1>
+      <hr>
+      <div id="rules">
+         <h3>Rule of the game</h3>
+         <p>
+            Given a 3*3 Matrix, in which (0,0), (0,2), (1,1), (2,0), (2,2) are painted black, and the left 4 blocks remain white.(As the image shown below)
+            <br>
+            Now given two dices (represented as two numbers). Everytime you click the "ROLL" butten, it will randomly display two independent numbers, range from 1-6.
+            <br>
+            The two numbers are regarded as the result of the dice. And these two numbers will define a coordinate on the matrix.
+            <br>
+            In each round of the game, you are expected to row the two dices two times and get two coordinates on the matrix and record their colors (black/white).
+            <br>
+            <b>If the two colors are the same, then you win 150 HKD. Else, you lose 150 HKD.</b>
+         </p>
+      </div>
+      <hr>
+      <div id="game">
+         <div id="matrix">
+            <div id="y-axis">
+               <table>
+                  <tbody><tr>
+                     <td>x/y</td>
+                     <td>1</td>
+                     <td>2</td>
+                     <td>3</td>
+                     <td>4</td>
+                     <td>5</td>
+                     <td>6</td>
+                  </tr>
+               </tbody></table>
+            </div>
+            <div class="row">
+               <table class="x-axis">
+                  <tbody><tr>
+                     <td>1</td>
+                  </tr>
+                  <tr>
+                     <td>2</td>
+                  </tr>
+               </tbody></table>
+               <div class="black"></div>
+               <div class="white"></div>
+               <div class="black"></div>
+            </div>
+            <div class="row">
+               <table class="x-axis">
+                  <tbody><tr>
+                     <td>3</td>
+                  </tr>
+                  <tr>
+                     <td>4</td>
+                  </tr>
+               </tbody></table>
+               <div class="white"></div>
+               <div class="black"></div>
+               <div class="white"></div>
+            </div>
+            <div class="row">
+               <table class="x-axis">
+                  <tbody><tr>
+                     <td>5</td>
+                  </tr>
+                  <tr>
+                     <td>6</td>
+                  </tr>
+               </tbody></table>
+               <div class="black"></div>
+               <div class="white"></div>
+               <div class="black"></div>
+            </div>
+         </div>
+         <div id="dice">
+            <p>
+               Please roll the dices:
+               <button id="button1" onclick="roll(0)">ROLL</button>
+            </p>
+            <p>
+               Please roll them again:
+               <button id="button2" onclick="roll(1)">ROLL Again</button>
+            </p>
+            <p id="notrial"></p>
+            <p id="nowin"></p>
+            <p id="nolose"></p>
+            <hr>
+            <p style="font-weight: bolder; color:rgb(255,50,50);">
+               Want to see the total result?<br>
+               Click <button onclick="result();">Here</button> !
+            </p>
+         </div>
+      </div>
+   
+</body></html>
