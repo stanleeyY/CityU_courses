@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Northcott's Game</title>
+    <style type="text/css">
+        <!--
+        #line4{
+            visibility: hidden;
+        }
+        body {
+            width:1080px;
+            margin:auto;
+        }
+        
+        *{
+            font-family: fantasy;
+        }
+        h1{
+            font-weight: bolder;
+        }
+        button{
+            width:200px;
+            height:45px;
+            font-size:2em;
+         }
+         button:hover{
+            font-weight: bold;
+            background-color: #666666;
+         }
+        .node{
+            float: left;
+            border: solid 1px #000000;
+            width: 100px;
+            height: 100px;
+        }
+        .check{
+            float: left;
+            color: #000000;
+            font-size: 3em;
+            border: solid 1px #000000;
+            width: 200px;
+            height: 60px;
+        }
+        .line{
+            height: 100px;
+        }
+        img{
+            width: 100%;
+            
+        }
+        -->
+    </style>
+    <script type="text/javascript">
+        <!--
+        var nextisa=true;
+        var end=false;
+        function getRandomInt(min, max) {
+            return Math.floor(Math.random() * (max - min)) + min;
+        }
+        var l1,r1,l2,r2,l3,r3,d1,d2,d3,temp;
+        function setcontent(a,b) {
+            if (b=='l'){
+                document.getElementById(a).innerHTML="<img src='img/l.png'>";
+            } else if (b=='r') {
+                document.getElementById(a).innerHTML="<img src='img/r.png'>";
+            } else {
+                document.getElementById(a).innerHTML="";
+            }
+        }
+        function move(a,b) {
+            if (end) {
+                return;
+            }
+            if (Math.floor(a/10)!=Math.floor(b/10) || (a>=b&&nextisa) ||(a<=b&&(a==r1||a==r2||a==r3))) {
+                alert("Invalid Move");
+                temp=0;
+                return;
+            }
+            if (a<b) {
+                setcontent(a,'e');
+                setcontent(b,'l');
+                if (l1==a) {
+                    l1=b;
+                }
+                if (l2==a) {
+                    l2=b;
+                }
+                if (l3==a) {
+                    l3=b;
+                }
+                nextisa=false;
+            } else {
+                setcontent(a,'e');
+                setcontent(b,'r');
+                if (r1==a) {
+                    r1=b;
+                }
+                if (r2==a) {
+                    r2=b;
+                }
+                if (r3==a) {
+                    r3=b;
+                }
+                nextisa=true;
+            }
+            refresh();
+            temp=0;
+            judge();
+        }
+        function judge() {
+            if (d1<=0&&d2<=0&&d3<=0) {
+                nextisa?alert("You Lost (v_v)"):alert("You Win (^_^)");
+                end=true;
+            }
+        }
+        function refresh() {
+            d1=r1-l1-1;
+            d2=r2-l2-1;
+            d3=r3-l3-1;
+            debug();
+        }
+        function initialize() {
+            l1=getRandomInt(11,15);
+            r1=getRandomInt(15,19);
+            l2=getRandomInt(21,25);
+            r2=getRandomInt(25,29);
+            l3=getRandomInt(31,35);
+            r3=getRandomInt(35,39);
+            refresh();
+            temp=0;
+            setcontent(l1,'l');
+            setcontent(l2,'l');
+            setcontent(l3,'l');
+            setcontent(r1,'r');
+            setcontent(r2,'r');
+            setcontent(r3,'r');
+        }
+        function robot() {
+            if ((d1^d2^d3)==0) {
+                if (d1>0) {
+                    move(r1,r1-1);
+                } else if (d2>0) {
+                    move(r2,r2-1);
+                } else if (d3>0) {
+                    move(r3,r3-1);
+                }
+            }
+            else{
+                var findpath=0;
+                var v1,v2,v3;
+                for(v1=1;v1<=d1;v1++){
+                    if (((d1-v1)^d2^d3)==0) {
+                        findpath=1;
+                        break;
+                    }
+                }
+                for(v2=1;findpath==0&&v2<=d2;v2++){
+                    if (((d2-v2)^d1^d3)==0) {
+                        findpath=2;
+                        break;
+                    }
+                }
+                for(v3=1;findpath==0&&v3<=d3;v3++){
+                    if (((d3-v3)^d1^d2)==0) {
+                        findpath=3;
+                        break;
+                    }
+                }
+                if (findpath==1) {
+                    move(r1,r1-v1);
+                } else if (findpath==2) {
+                    move(r2,r2-v2);
+                } else if (findpath==3) {
+                    move(r3,r3-v3);
+                }
+            }
+            nextisa=true;
+        }
+        function clicked(node) {
+            if (end) {
+                return;
+            }
+            if (temp==0) {
+                document.getElementById(node).style.border="dashed 3px";
+                temp=node;
+            } else {
+                document.getElementById(temp).style.border="solid 1px";
+                move(temp,node);
+                if (!end&&!nextisa) {
+                    robot();
+                }
+            }
+        }
+        function debug() {
+            document.getElementById(41).innerHTML="L1: "+d1;
+            document.getElementById(42).innerHTML="L2: "+d2;
+            document.getElementById(43).innerHTML="L3: "+d3;
+            document.getElementById(44).innerHTML="XOR: "+(d1^d2^d3);
+        }
+        function showHint() {
+            document.getElementById("line4").style.visibility="visible";
+        }
+        -->
+    </script>
+</head>
+    <body>
+        <h1>Northcott's Game</h1>
+        <div id="line1" class="line">
+            <div id="11" class="node" onclick="clicked(11);"></div>
+            <div id="12" class="node" onclick="clicked(12);"></div>
+            <div id="13" class="node" onclick="clicked(13);"></div>
+            <div id="14" class="node" onclick="clicked(14);"></div>
+            <div id="15" class="node" onclick="clicked(15);"></div>
+            <div id="16" class="node" onclick="clicked(16);"></div>
+            <div id="17" class="node" onclick="clicked(17);"></div>
+            <div id="18" class="node" onclick="clicked(18);"></div>
+        </div>
+        <br>
+        <div id="line2" class="line">
+            <div id="21" class="node" onclick="clicked(21);"></div>
+            <div id="22" class="node" onclick="clicked(22);"></div>
+            <div id="23" class="node" onclick="clicked(23);"></div>
+            <div id="24" class="node" onclick="clicked(24);"></div>
+            <div id="25" class="node" onclick="clicked(25);"></div>
+            <div id="26" class="node" onclick="clicked(26);"></div>
+            <div id="27" class="node" onclick="clicked(27);"></div>
+            <div id="28" class="node" onclick="clicked(28);"></div>
+        </div>
+        <br>
+        <div id="line3" class="line">
+            <div id="31" class="node" onclick="clicked(31);"></div>
+            <div id="32" class="node" onclick="clicked(32);"></div>
+            <div id="33" class="node" onclick="clicked(33);"></div>
+            <div id="34" class="node" onclick="clicked(34);"></div>
+            <div id="35" class="node" onclick="clicked(35);"></div>
+            <div id="36" class="node" onclick="clicked(36);"></div>
+            <div id="37" class="node" onclick="clicked(37);"></div>
+            <div id="38" class="node" onclick="clicked(38);"></div>
+        </div>
+        <br><br>
+        <div id="line4" class="line">
+            <div id="41" class="check"></div>
+            <div id="42" class="check"></div>
+            <div id="43" class="check"></div>
+            <div id="44" class="check"></div>
+        </div>
+        <br>
+        <button onclick="showHint()">Hint</button>
+        <button onclick="location.reload();">Reload</button>
+        <button onclick="location.href='../../index.html';">Back</button>
+        <br>
+        <script type="text/javascript">
+            initialize();
+            debug();
+        </script>
+    
+    </body>
+</html>

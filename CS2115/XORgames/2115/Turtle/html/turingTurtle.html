@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Turing turtle</title>
+    <style>
+        body{
+            width: 1080px;
+            margin: auto;
+            height: 700px;
+            background: url("../img/bg.png") center no-repeat;
+            background-size: 1080px 700px;
+        }
+        
+        .shell{
+            position: relative;
+            float: left;
+            height:70px;
+            width:auto;
+            top:520px;
+            margin-left: 5px;
+        }
+        #t0{
+            margin-left: 50px;
+        }
+        h1{
+            position:absolute;
+             color:#ffffff;
+        }
+        #button{
+            width: 200px;
+            height:150px;
+            background: url("../img/button.png");
+            background-size: 200px 150px;
+            position:absolute;
+            left:600px;
+            top:300px;
+        }
+        #buttonTag{
+            color:#ffffff;
+            text-align: center;
+            width:200px;
+            height: auto;
+            margin: auto;
+            top:55px;
+        }
+        .rotate{
+            position: relative;
+            float: left;
+            height:70px;
+            width:auto;
+            top:520px;
+            margin-left: 5px;
+            
+        }
+
+    </style>
+    <script>
+        var started=0;
+        var player=0;//0 is man 1 is machine
+        var previousToFlip=0;
+        var step=0;
+        var shell=[0,0,0,0,0,0,0,0,0,0,0,0,0];//0 is head 1 is tail
+        var pile=[0,0,0,0,0,0,0,0,0,0,0,0,0];
+        var count=0;
+        function machinePlay()
+        {
+            document.getElementById("hint").innerHTML="My turn...";
+            var temp;
+            var i;
+            for(i=0;i<13;i++)
+            {
+                if (pile[i]==0) {
+                    continue;
+                }
+                else if (shell[pile[i]-1]==1) {
+                    continue;
+                }
+                var nimSum=0;
+                for(var j=0;j<13;j++)
+                {
+                    if (j==i) {continue;}
+                    nimSum=nimSum^pile[j];
+                }
+                if (nimSum==pile[i]) {
+                    shell[pile[i]-1]=1;
+                    var j=document.getElementById("t"+(pile[i]-1));
+                    pile[i]=0;
+                    j.style.transform = "rotate(180deg)";
+                    j.style.transitionDuration = "0.5s";
+                    if (win()==1) {
+                        alert("You win!");
+                    }
+                    else if (win()==-1) {
+                        alert("You lose");
+                    }
+                    player=0;
+                    document.getElementById("hint").innerHTML="Choose a headed-up turtle to flip and than you can choose a turtle on the left to flip";
+                    return;
+                }
+                if (pile[i]>nimSum) {
+                    temp=nimSum-1;
+                    break;
+                }
+            }
+            if (temp==-1) {
+                shell[pile[i]-1]=1;
+                var j=document.getElementById("t"+(pile[i]-1));
+                pile[i]=0;
+                j.style.transform = "rotate(180deg)";
+                j.style.transitionDuration = "0.5s";
+                document.getElementById("hint").innerHTML="Choose a headed-up turtle to flip and than you can choose a turtle on the left to flip";
+            }
+            else if (shell[temp]==0) {
+                shell[pile[i]-1]=1;
+                var j=document.getElementById("t"+(pile[i]-1));
+                pile[i]=0;
+                for(var k=0;k<13;k++)
+                {
+                    if (pile[k]==(temp+1)) {
+                        pile[k]=0;
+                        break;
+                    }
+                }
+                j.style.transform = "rotate(180deg)";
+                j.style.transitionDuration = "0.5s";
+                shell[temp]=1;
+                j=document.getElementById("t"+temp);
+                j.style.transform = "rotate(" + 180 + "deg)";
+                j.style.transitionDuration = "0.5s";
+                
+                document.getElementById("hint").innerHTML="Choose a headed-up turtle to flip and than you can choose a turtle on the left to flip";
+            }
+            else{
+                shell[pile[i]-1]=1;
+                var j=document.getElementById("t"+(pile[i]-1));
+                pile[i]=temp+1;
+                j.style.transform = "rotate(" + 180 + "deg)";
+                j.style.transitionDuration = "0.5s";
+                shell[temp]=0;
+                j=document.getElementById("t"+temp);
+                j.style.transform = "rotate(" + 0 + "deg)";
+                j.style.transitionDuration = "0.5s";
+                
+                document.getElementById("hint").innerHTML="Choose a headed-up turtle to flip and than you can choose a turtle on the left to flip";
+            }
+            if (win()==1) {
+                alert("You win!");
+            }
+            else if (win()==-1) {
+                alert("You lose");
+            }
+                player=0;
+        }
+        
+        function flip(x) {
+            if (step==0) {
+                if (shell[x]==0) {
+                    previousToFlip=x;
+                    shell[x]=1;
+                    for(var i=0;i<13;i++)
+                    {
+                        if (pile[i]-1==x) {
+                            pile[i]=0;
+                        }
+                    }
+                    var j=document.getElementById("t"+x);
+                    j.style.transform = "rotate(" + 180 + "deg)";
+                    j.style.transitionDuration = "0.5s";
+                    step=1;
+                }
+                else{
+                    alert("choose a headed-up one!");
+                }
+            }
+            else if(step==1)
+            {
+                if (x<previousToFlip) {
+                    previousToFlip=0;
+                    if (shell[x]==0) {
+                        shell[x]=1;
+                        for(var i=0;i<13;i++)
+                        {
+                            if (pile[i]==x+1) {
+                                pile[i]=0;
+                                break;
+                            }
+                        }
+                        var j=document.getElementById("t"+x);
+                        j.style.transform = "rotate(" + 180 + "deg)";
+                        j.style.transitionDuration = "0.5s";//code
+                        //step=0;
+                    }
+                    else{
+                        shell[x]=0;
+                        for(var i=0;i<13;i++)
+                        {
+                            if (pile[i]==0) {
+                                pile[i]=x+1;
+                                break;
+                            }
+                        }
+                        var j=document.getElementById("t"+x);
+                        j.style.transform = "rotate(" + 0 + "deg)";
+                        j.style.transitionDuration = "0.5s";//code
+                        //step=0;
+                    }
+                    //player=1;
+                    //machinePlay();
+                }
+            }
+        }
+        function play()
+        {
+            if (started==0) {
+                start();
+            }
+            else{
+                if (win()==1) {
+                    alert("You win!");
+                }
+                else if (win()==-1) {
+                    alert("You lose");
+                }
+                else if (step==0) {
+                  alert("You have to move!");
+                }
+                else{
+                    player=1;
+                    step=0;
+                    
+                    machinePlay();
+                }
+            }
+        }
+        function start()
+        {
+            for(var i=0;i<13;i++)
+            {
+                var s=Math.floor(Math.random()+0.5);
+                shell[i]=s;
+                if (shell[i]==1) {
+                    var j=document.getElementById("t"+i);
+                    j.style.transform = "rotate(" +  180+ "deg)";
+                    j.style.transitionDuration = "0.5s";//code
+                    
+                }
+                else{
+                   pile[count]=i+1;
+                    count=count+1;
+                }
+                document.getElementById("buttonTag").innerHTML="continue";
+                
+            }
+            started=1;
+            document.getElementById("hint").innerHTML="Choose a headed-up turtle to flip and than you can choose one on the left to flip";
+        }
+        
+        function win() {
+            var sum=0;
+            for (var i=0;i<13;i++) {
+                sum=sum+shell[i];
+            }
+            if (sum==13) {
+                if (player==1) {
+                    return -1;
+                }
+                else{
+                    return 1;
+                }
+            }
+            else{
+                return 0;
+            }
+        }
+    </script>
+</head>
+
+
+<body>
+    <h1 id="hint">welcome to turing turtle game!</h1>
+    
+    <div id="button" onclick="play()"><h1 id="buttonTag">Start!</h1></div>
+    <div id="turtle">
+    <img class="shell" id="t0" alt="turtle" src="../img/koopaShell.png" onclick="flip(0)">
+    <img class="shell" id="t1" alt="turtle" src="../img/koopaShell.png"onclick="flip(1)">
+    <img class="shell" id="t2" alt="turtle" src="../img/koopaShell.png"onclick="flip(2)">
+    <img class="shell" id="t3" alt="turtle" src="../img/koopaShell.png"onclick="flip(3)">
+    <img class="shell" id="t4" alt="turtle" src="../img/koopaShell.png"onclick="flip(4)">
+    <img class="shell" id="t5" alt="turtle" src="../img/koopaShell.png"onclick="flip(5)">
+    <img class="shell" id="t6" alt="turtle" src="../img/koopaShell.png"onclick="flip(6)">
+    <img class="shell" id="t7" alt="turtle" src="../img/koopaShell.png"onclick="flip(7)">
+    <img class="shell" id="t8" alt="turtle" src="../img/koopaShell.png"onclick="flip(8)">
+    <img class="shell" id="t9" alt="turtle" src="../img/koopaShell.png"onclick="flip(9)">
+    <img class="shell" id="t10" alt="turtle" src="../img/koopaShell.png"onclick="flip(10)">
+    <img class="shell" id="t11" alt="turtle" src="../img/koopaShell.png"onclick="flip(11)">
+    <img class="shell" id="t12" alt="turtle" src="../img/koopaShell.png"onclick="flip(12)">
+    </div>
+</body>
+</html>
