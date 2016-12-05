@@ -21,7 +21,7 @@ int findSubstringInWraproundString(char* p) {
     }
     for (i = 0; i < 26; i++) {
         int j, k;
-        for (k = 1, j = (i == 25 ? 0 : i + 1); k <= dp[i]; k++, j == 25 ? j = 0 : j++)
+        for (k = 1, j = (i == 25 ? 0 : i + 1); k <= dp[i]; k++, j == 25 ? j = 0 : j++)//OutOfIndex Handling
             if (dp[i] - k > dp[j])
                 dp[j] = dp[i] - k;
     }
