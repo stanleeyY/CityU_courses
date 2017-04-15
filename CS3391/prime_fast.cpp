@@ -1,9 +1,9 @@
 // Fast Prime Filter
 
-int composite[(100000000>>6)+1];
+int composite[(100000000 >> 6) + 1];
 
-bool isPrime(int x){
-    return x==2 || x>2 && (x&1) && !(composite[x>>6]&(1<<((x>>1)&63)));
+bool isPrime(int x) {
+    return x == 2 || x > 2 && (x & 1) && !(composite[x >> 6] & (1 << ((x >> 1) & 63)));
 }
 
 
